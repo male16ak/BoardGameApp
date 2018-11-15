@@ -4,7 +4,8 @@ import {
   StyleSheet,
   ActivityIndicator,
   TextInput,
-  View
+  View,
+  ImageBackground
 } from "react-native";
 import firebase from "firebase";
 import SignUpForm from "./SignUpForm";
@@ -47,36 +48,41 @@ export default class LoginForm extends Component {
     switch (this.state.hasLogin) {
       case true:
         return (
-          <View style={styles.container}>
-            <Text style={styles.signIn}>Sign in Here</Text>
-            <TextInput
-              style={styles.inputText}
-              label="Username"
-              placeholder="your@email.com"
-              placeholderTextColor="blue"
-              value={this.state.email}
-              onChangeText={email => this.setState({ email })}
-            />
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="blue"
-              style={styles.inputText}
-              value={this.state.password}
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-            />
+          <ImageBackground
+            source={require("../assets/images/BG.jpg")}
+            style={styles.container}
+          >
+            <View style={styles.container}>
+              <Text style={styles.signIn}>Sign in Here</Text>
+              <TextInput
+                style={styles.inputText}
+                label="Username"
+                placeholder="your@email.com"
+                placeholderTextColor="blue"
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
+              />
+              <TextInput
+                placeholder="Password"
+                placeholderTextColor="blue"
+                style={styles.inputText}
+                value={this.state.password}
+                secureTextEntry={true}
+                onChangeText={password => this.setState({ password })}
+              />
 
-            <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+              <Text style={styles.errorTextStyle}>{this.state.error}</Text>
 
-            {this.renderButton()}
-            <Button
-              title="Sign up"
-              style={styles.buttonStyle}
-              titleStyle={{ fontWeight: "700" }}
-              containerStyle={{ marginTop: 20, width: 300, height: 45 }}
-              onPress={() => this.setState({ hasLogin: false })}
-            />
-          </View>
+              {this.renderButton()}
+              <Button
+                title="Sign up"
+                style={styles.buttonStyle}
+                titleStyle={{ fontWeight: "700" }}
+                containerStyle={{ marginTop: 20, width: 300, height: 45 }}
+                onPress={() => this.setState({ hasLogin: false })}
+              />
+            </View>
+          </ImageBackground>
         );
       case false: {
         return (
@@ -114,9 +120,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white"
+    alignItems: "center"
   },
+
   errorTextStyle: {
     fontSize: 20,
     alignSelf: "center",

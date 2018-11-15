@@ -19,10 +19,11 @@ export default class HomeScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: "Albums"
+    title: "Board Games"
   };
 
   componentDidMount() {
+
   this.getBoardGamesFromApiAsync();
   }
   
@@ -46,6 +47,7 @@ export default class HomeScreen extends React.Component {
             return boardGames;
 
           });
+  }
 
           
   }

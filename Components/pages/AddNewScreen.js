@@ -1,38 +1,42 @@
 import React from "react";
-import { View, Button, StyleSheet, Text, TextInput } from "react-native";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 import firebase from "firebase";
+import { Button } from "react-native-elements";
 
 export default class AddNewScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      artist: "",
       title: "",
-      error: "",
-      image: "https://images-na.ssl-images-amazon.com/images/I/41j7-7yboXL.jpg"
+      genre: "",
+      antal: "",
+      aldersgruppe: "",
+      error: ""
     };
   }
 
   static navigationOptions = {
-    title: "Add New Album"
+    title: "Add New Game"
   };
 
-  writeAlbum() {
-    const artist = this.state.artist;
+  writeGame() {
     const title = this.state.title;
-    const image = this.state.image;
+    const genre = this.state.genre;
+    const antal = this.state.antal;
+    const aldersgruppe = this.state.aldersgruppe;
 
     firebase
       .database()
-      .ref("albums/")
+      .ref("BoardGames/")
       .push({
-        artist,
         title,
-        image
+        genre,
+        antal,
+        aldersgruppe
       })
       .then(data => {
-        alert("Album created successfully");
+        alert("Game created successfully");
       })
       .catch(error => {
         //error callback
@@ -44,21 +48,36 @@ export default class AddNewScreen extends React.Component {
     return (
       <View style={styles.container}>
         <TextInput
-          label="Artist"
-          placeholder="Artist"
-          value={this.state.artist}
-          onChangeText={artist => this.setState({ artist })}
-        />
-        <TextInput
-          label="Album Title"
-          placeholder="Album Title"
+          label="Game Title"
+          placeholder="Game Title"
           value={this.state.title}
           onChangeText={title => this.setState({ title })}
         />
-        <TextInput editable={false} value={this.state.image} />
+        <TextInput
+          label="Game Genre"
+          placeholder="Game Genre"
+          value={this.state.genre}
+          onChangeText={genre => this.setState({ genre })}
+        />
+        <TextInput
+          label="Antal Spillere"
+          placeholder="Antal Spillere"
+          value={this.state.antal}
+          onChangeText={antal => this.setState({ antal })}
+        />
+        <TextInput
+          label="Aldersgruppe"
+          placeholder="Aldersgruppe"
+          value={this.state.aldersgruppe}
+          onChangeText={aldersgruppe => this.setState({ aldersgruppe })}
+        />
 
         <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-        <Button title="Add new Album" onPress={this.writeAlbum.bind(this)} />
+        <Button
+          title="Add new Game"
+          style={styles.buttonStyle}
+          onPress={this.writeGame.bind(this)}
+        />
       </View>
     );
   }
@@ -71,9 +90,11 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: "center"
   },
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: "center",
-    color: "red"
+
+  buttonStyle: {
+    backgroundColor: "rgba(92, 99,216, 1)",
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
   }
 });

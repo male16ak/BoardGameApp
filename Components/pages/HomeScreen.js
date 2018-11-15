@@ -19,7 +19,7 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-    this.getAlbumsFromApiAsync();
+   /* this.getAlbumsFromApiAsync();*/
     this.getBoardGamesFromApiAsync();
   }
 
@@ -34,9 +34,9 @@ export default class HomeScreen extends React.Component {
         //Brug artist ID til at hente fulde navn og erstat dataen.
         //Da dataen i øvelserne kun er fra Taylor Swift, går vi bare ind i første object i Arrayet,
         //da vi ved alle objekter har samme artist. Er der forskellige, kan man loope igennem arrayet og erstatte variabler
-        var artistID = albums[0].artist;
+        //var artistID = albums[0].artist;
 
-        //Lav et nyt database-kald:
+        /*Lav et nyt database-kald:
         firebase
           .database()
           .ref("artists/" + artistID)
@@ -47,16 +47,16 @@ export default class HomeScreen extends React.Component {
                 snapshotArtist.val().firstName +
                 " " +
                 snapshotArtist.val().lastName;
-            });
+            });*/
             that.setState({
               isLoading: false,
-              dataSource: albums
+              dataSource: boardGames 
             });
           });
-      });
+      /*});*/
   }
 
-  getAlbumsFromApiAsync() {
+ /* getAlbumsFromApiAsync() {
     var that = this;
 
     return firebase
@@ -87,7 +87,7 @@ export default class HomeScreen extends React.Component {
             });
           });
       });
-  }
+  }*/
 
   render() {
     if (this.state.isLoading) {
@@ -120,7 +120,7 @@ export default class HomeScreen extends React.Component {
               title={item.title}
               titleStyle={{ color: "tomato", fontWeight: "bold" }}
               subtitleStyle={{ color: "tomato" }}
-              subtitle={item.artist}
+              subtitle={item.genre}
               chevronColor="tomato"
               onPress={() => this.props.navigation.navigate("Details", item)}
               containerStyle={{ backgroundColor: "white" }}

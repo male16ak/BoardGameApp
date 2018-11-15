@@ -10,12 +10,12 @@ export default class DetailsScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const title = navigation.getParam("title", "No title");
-    const artist = navigation.getParam("artist", "No artist defined");
+    const genre = navigation.getParam("genre", "No genre defined");
 
     return (
       <View>
         <Text>Titlen på albummet er: {title}</Text>
-        <Text>Kunstneren på albummet er: {artist}</Text>
+        <Text>Genren på spillet er: {genre}</Text>
       </View>
     );
   }

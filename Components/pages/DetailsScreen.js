@@ -27,14 +27,18 @@ export default class DetailsScreen extends React.Component {
     const genre = navigation.getParam("genre", "No genre defined");
     const aldersgruppe = navigation.getParam("aldersgruppe","Ingen aldersgrænse" )
     const image = navigation.getParam("image", "Intet billede defineret")
+    const antal = navigation.getParam("antal", "Intet specificerede antal")
 
     return (
       <View>
+        <Image style={{ width: 95, height: 95 }}
+                source={{ uri: image }}></Image>
         <Text>Titel: {title}</Text>
         <Text>Genre: {genre}</Text>
-        <Text>Antal spillere: {aldersgruppe} </Text>
-        <Image style={{ width: 65, height: 65 }}
-                source={{ uri: image }}></Image>
+        <Text>Anbefalet alder: {aldersgruppe} </Text>
+        <Text>Antal spillere: {antal}</Text>
+      
+        
         <Button
   icon={
         <Icon

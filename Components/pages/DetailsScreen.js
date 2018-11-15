@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Button, Text } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
+import { Button } from "react-native-elements";
 import firebase from "firebase";
 
 export default class DetailsScreen extends React.Component {
@@ -20,3 +21,11 @@ export default class DetailsScreen extends React.Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  buttonStyle: {
+    backgroundColor: "rgba(92, 99,216, 1)",
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
+  }
+});

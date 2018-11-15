@@ -15,45 +15,11 @@ export default class HomeScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: "Albums"
+    title: "Board Games"
   };
 
   componentDidMount() {
     this.getAlbumsFromApiAsync();
-    this.getBoardGamesFromApiAsync();
-  }
-
-  getBoardGamesFromApiAsync() {
-    var that = this;
-
-    return firebase
-      .database()
-      .ref("BoardGames")
-      .on("value", function(snapshot) {
-        var boardGames = Object.values(snapshot.val());
-        //Brug artist ID til at hente fulde navn og erstat dataen.
-        //Da dataen i øvelserne kun er fra Taylor Swift, går vi bare ind i første object i Arrayet,
-        //da vi ved alle objekter har samme artist. Er der forskellige, kan man loope igennem arrayet og erstatte variabler
-        var artistID = albums[0].artist;
-
-        //Lav et nyt database-kald:
-        firebase
-          .database()
-          .ref("artists/" + artistID)
-          .once("value", function(snapshotArtist) {
-            //loop over albums og erstat
-            albums.forEach(function(album) {
-              album.artist =
-                snapshotArtist.val().firstName +
-                " " +
-                snapshotArtist.val().lastName;
-            });
-            that.setState({
-              isLoading: false,
-              dataSource: albums
-            });
-          });
-      });
   }
 
   getAlbumsFromApiAsync() {

@@ -4,11 +4,11 @@ import {
   StyleSheet,
   ActivityIndicator,
   TextInput,
-  View,
-  Button
+  View
 } from "react-native";
 import firebase from "firebase";
 import SignUpForm from "./SignUpForm";
+import { Button } from "react-native-elements";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -48,15 +48,19 @@ export default class LoginForm extends Component {
       case true:
         return (
           <View style={styles.container}>
-            <Text>Sign in</Text>
+            <Text style={styles.signIn}>Sign in Here</Text>
             <TextInput
+              style={styles.inputText}
               label="Username"
-              placeholder="user@mail.com"
+              placeholder="your@email.com"
+              placeholderTextColor="blue"
               value={this.state.email}
               onChangeText={email => this.setState({ email })}
             />
             <TextInput
-              placeholder="password"
+              placeholder="Password"
+              placeholderTextColor="blue"
+              style={styles.inputText}
               value={this.state.password}
               secureTextEntry={true}
               onChangeText={password => this.setState({ password })}
@@ -67,18 +71,23 @@ export default class LoginForm extends Component {
             {this.renderButton()}
             <Button
               title="Sign up"
-              style={styles.buttonsContainer}
+              style={styles.buttonStyle}
+              titleStyle={{ fontWeight: "700" }}
+              containerStyle={{ marginTop: 20, width: 300, height: 45 }}
               onPress={() => this.setState({ hasLogin: false })}
             />
           </View>
         );
       case false: {
         return (
-          <View>
+          <View style={styles.container}>
             <SignUpForm />
             <Button
-              title="go back"
+              style={styles.buttonStyle}
+              title="Go Back"
               onPress={() => this.setState({ hasLogin: true })}
+              titleStyle={{ fontWeight: "700" }}
+              containerStyle={{ marginTop: 20, width: 300, height: 45 }}
             />
           </View>
         );
@@ -91,16 +100,10 @@ export default class LoginForm extends Component {
     }
     return (
       <Button
-        styles={styles.buttonsContainer}
+        styles={styles.buttonsStyle}
         title="Log in"
         onPress={this.signIn.bind(this)}
         titleStyle={{ fontWeight: "700" }}
-        buttonStyle={{
-          backgroundColor: "rgba(92, 99,216, 1)",
-          borderColor: "transparent",
-          borderWidth: 0,
-          borderRadius: 5
-        }}
         containerStyle={{ marginTop: 20, width: 300, height: 45 }}
       />
     );
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "white"
   },
   errorTextStyle: {
     fontSize: 20,
@@ -126,5 +129,23 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 20,
     color: "red"
+  },
+
+  buttonStyle: {
+    backgroundColor: "rgba(92, 99,216, 1)",
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
+  },
+  inputText: {
+    margin: 5,
+    height: 35,
+    borderColor: "black",
+    borderWidth: 1,
+    fontStyle: "italic",
+    width: 300
+  },
+  signIn: {
+    fontSize: 25
   }
 });

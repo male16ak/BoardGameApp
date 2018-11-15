@@ -50,7 +50,7 @@ export default class HomeScreen extends React.Component {
   }
 
           
-  }
+  
   searchFunction = ({ title, genre}, query) => {
     if (title.includes(query) || genre.includes(query))  {
       return true;
@@ -120,4 +120,7 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
-}
+
+
+
+

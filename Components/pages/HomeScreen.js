@@ -44,8 +44,11 @@ export default class HomeScreen extends React.Component {
       });
   }
 
-  searchFunction = ({ title, genre }, query) => {
-    if (title.includes(query) || genre.includes(query)) {
+
+  
+  searchFunction = ({ title, genre}, query) => {
+    if (title.includes(query) || genre.includes(query))  {
+
       return true;
     }
     return false;
@@ -106,4 +109,7 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
+
+
 }
+

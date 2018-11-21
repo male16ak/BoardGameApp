@@ -19,10 +19,15 @@ const SettingsStack = createStackNavigator({
   Details: { screen: DetailsScreen }
 });
 
+const AddNewStack = createStackNavigator({
+  AddNew: { screen: AddNewScreen },
+  Details: { screen: DetailsScreen }
+});
+
 export default createBottomTabNavigator(
   {
     Home: { screen: HomeStack },
-    AddNew: { screen: AddNewScreen },
+    AddNew: { screen: AddNewStack },
     Settings: { screen: SettingsStack }
   },
 

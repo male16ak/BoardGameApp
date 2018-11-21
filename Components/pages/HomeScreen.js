@@ -54,11 +54,24 @@ export default class HomeScreen extends React.Component {
     return false;
   };
 
-  handleSearch = async text => {
+
+  
+  handleSearch = text => {
+   /*
     const data = _.filter(this.State.data, boardGames => {
       return this.searchFunction(boardGames);
     });
-    this.setState({ query: text, data });
+    this.setState ({ query: text, data});
+*/
+    const result = this.state.dataSource.filter(item => {
+      if(item.title.includes (text) || item.genre.includes(text))  {
+        return item
+      }
+    })
+
+    console.log(result)
+
+
   };
 
   render() {
@@ -110,6 +123,6 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-
 }
+
 

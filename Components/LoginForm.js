@@ -86,16 +86,22 @@ export default class LoginForm extends Component {
         );
       case false: {
         return (
-          <View style={styles.container}>
-            <SignUpForm />
-            <Button
-              style={styles.buttonStyle}
-              title="Go Back"
-              onPress={() => this.setState({ hasLogin: true })}
-              titleStyle={{ fontWeight: "700" }}
-              containerStyle={{ marginTop: 20, width: 300, height: 45 }}
-            />
-          </View>
+          <ImageBackground
+            source={require("../assets/images/BG.jpg")}
+            style={styles.container}
+          >
+            <View>
+              <SignUpForm />
+
+              <Button
+                style={styles.buttonStyle}
+                title="Go Back"
+                onPress={() => this.setState({ hasLogin: true })}
+                titleStyle={{ fontWeight: "700" }}
+                containerStyle={{ marginTop: 20, width: 300, height: 45 }}
+              />
+            </View>
+          </ImageBackground>
         );
       }
     }
@@ -106,7 +112,7 @@ export default class LoginForm extends Component {
     }
     return (
       <Button
-        styles={styles.buttonsStyle}
+        style={styles.buttonStyle}
         title="Log in"
         onPress={this.signIn.bind(this)}
         titleStyle={{ fontWeight: "700" }}
@@ -133,8 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     width: "100%",
-    marginTop: 20,
-    color: "red"
+    marginTop: 20
   },
 
   buttonStyle: {

@@ -9,7 +9,7 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      query: '',
+      query: "",
       data: [],
       fullData: []
     };
@@ -23,12 +23,8 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-
-  this.getBoardGamesFromApiAsync();
+    this.getBoardGamesFromApiAsync();
   }
-  
-
-  
 
   getBoardGamesFromApiAsync() {
     var that = this;
@@ -38,25 +34,26 @@ export default class HomeScreen extends React.Component {
       .ref("BoardGames")
       .on("value", function(snapshot) {
         var boardGames = Object.values(snapshot.val());
-        
-            that.setState({
-              isLoading: false,
-              dataSource: boardGames,
-              data: boardGames
-            });
-            return boardGames;
 
-          });
+        that.setState({
+          isLoading: false,
+          dataSource: boardGames,
+          data: boardGames
+        });
+        return boardGames;
+      });
   }
 
-          
+
   
   searchFunction = ({ title, genre}, query) => {
     if (title.includes(query) || genre.includes(query))  {
+
       return true;
-    } 
+    }
     return false;
   };
+
 
   
   handleSearch = text => {
@@ -74,12 +71,9 @@ export default class HomeScreen extends React.Component {
 
     console.log(result)
 
+
   };
 
-  
-
- 
-  
   render() {
     if (this.state.isLoading) {
       return (
@@ -99,10 +93,11 @@ export default class HomeScreen extends React.Component {
     return (
       <View>
         <SearchBar
-    lightTheme
-    onChangeText={this.handleSearch}
-    /*onClear={someMethod}*/
-    placeholder='Type Here...' />
+          lightTheme
+          onChangeText={this.handleSearch}
+          /*onClear={someMethod}*/
+          placeholder="Type Here..."
+        />
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
@@ -124,8 +119,6 @@ export default class HomeScreen extends React.Component {
           )}
           keyExtractor={(item, index) => index.toString()}
         />
-        
-
       </View>
     );
   }

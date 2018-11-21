@@ -34,6 +34,12 @@ export default class LoginForm extends Component {
       .signInWithEmailAndPassword(email, password)
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
+      
+      
+       global.brugernavn = this.state.email;; 
+       
+      
+
   }
 
   onLoginSuccess() {
@@ -160,3 +166,4 @@ const styles = StyleSheet.create({
     fontSize: 25
   }
 });
+

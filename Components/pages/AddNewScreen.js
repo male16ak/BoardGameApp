@@ -1,7 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Text, TextInput } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  ImageBackground,
+  Alert
+} from "react-native";
 import firebase from "firebase";
-import { Button } from "react-native-elements";
+import { Button, Header } from "react-native-elements";
 
 export default class AddNewScreen extends React.Component {
   constructor(props) {
@@ -17,7 +24,7 @@ export default class AddNewScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: "Add New Game"
+    title: "Add a Board Game"
   };
 
   writeGame() {
@@ -26,59 +33,83 @@ export default class AddNewScreen extends React.Component {
     const antal = this.state.antal;
     const aldersgruppe = this.state.aldersgruppe;
 
-    firebase
-      .database()
-      .ref("BoardGames/")
-      .push({
-        title,
-        genre,
-        antal,
-        aldersgruppe
-      })
-      .then(data => {
-        alert("Game created successfully");
-      })
-      .catch(error => {
-        //error callback
-        console.log("error ", error);
+    if (title === "" || genre === "" || antal === "" || aldersgruppe === "") {
+      Alert.alert("Fejl", "Du skal udfylde alle felter");
+
+      this.setState({
+        title: "",
+        genre: "",
+        antal: "",
+        aldersgruppe: "",
+        error: ""
       });
+    } else
+      firebase
+        .database()
+        .ref("BoardGames/")
+        .push({
+          title,
+          genre,
+          antal,
+          aldersgruppe
+        })
+        .then(data => {
+          alert("Game created successfully");
+        })
+        .catch(error => {
+          //error callback
+          console.log("error ", error);
+        });
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <TextInput
-          label="Game Title"
-          placeholder="Game Title"
-          value={this.state.title}
-          onChangeText={title => this.setState({ title })}
-        />
-        <TextInput
-          label="Game Genre"
-          placeholder="Game Genre"
-          value={this.state.genre}
-          onChangeText={genre => this.setState({ genre })}
-        />
-        <TextInput
-          label="Antal Spillere"
-          placeholder="Antal Spillere"
-          value={this.state.antal}
-          onChangeText={antal => this.setState({ antal })}
-        />
-        <TextInput
-          label="Aldersgruppe"
-          placeholder="Aldersgruppe"
-          value={this.state.aldersgruppe}
-          onChangeText={aldersgruppe => this.setState({ aldersgruppe })}
-        />
+      <ImageBackground
+        source={require("../../assets/images/BG.jpg")}
+        style={styles.container}
+      >
+        <View style={styles.container}>
+          <TextInput
+            style={styles.inputText}
+            placeholderTextColor="black"
+            label="Game Title"
+            placeholder="Game Title"
+            value={this.state.title}
+            onChangeText={title => this.setState({ title })}
+          />
+          <TextInput
+            style={styles.inputText}
+            placeholderTextColor="black"
+            label="Game Genre"
+            placeholder="Genre"
+            value={this.state.genre}
+            onChangeText={genre => this.setState({ genre })}
+          />
+          <TextInput
+            style={styles.inputText}
+            placeholderTextColor="black"
+            label="Antal Spillere"
+            placeholder="Antal Spillere"
+            value={this.state.antal}
+            onChangeText={antal => this.setState({ antal })}
+          />
+          <TextInput
+            style={styles.inputText}
+            placeholderTextColor="black"
+            label="Aldersgruppe"
+            placeholder="Aldersgruppe"
+            value={this.state.aldersgruppe}
+            onChangeText={aldersgruppe => this.setState({ aldersgruppe })}
+          />
 
-        <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-        <Button
-          title="Add new Game"
-          style={styles.buttonStyle}
-          onPress={this.writeGame.bind(this)}
-        />
-      </View>
+          <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+          <Button
+            title="Add New Game"
+            style={styles.buttonStyle}
+            onPress={this.writeGame.bind(this)}
+          />
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -86,15 +117,24 @@ export default class AddNewScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "stretch",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   buttonStyle: {
     backgroundColor: "rgba(92, 99,216, 1)",
     borderColor: "transparent",
     borderWidth: 0,
-    borderRadius: 5
+    borderRadius: 5,
+    width: 300
+  },
+  inputText: {
+    margin: 5,
+    height: 35,
+    borderColor: "black",
+    borderWidth: 1,
+    fontStyle: "italic",
+    width: 300,
+    textAlign: "center"
   }
 });

@@ -58,19 +58,17 @@ export default class HomeScreen extends React.Component {
 
   };
 
-
-  
   handleSearch = text => {
-   
+
     const result = this.state.dataSource.filter(item => {
-      if(item.title.includes (text) || item.genre.includes(text))  {
-        return item
+      if (item.title.includes(text) || item.genre.includes(text)) {
+        return item;
       }
+
     })
 
     this.setState ({dataSource: result,
                     text: text})
-    console.log(result)
 
 
   };
@@ -124,7 +122,4 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
-
 }
-
-

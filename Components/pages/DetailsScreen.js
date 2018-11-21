@@ -31,13 +31,18 @@ export default class DetailsScreen extends React.Component {
 
     return (
       <View>
-        <Image style={{ width: 95, height: 95 }}
+        <Image style={{ width: 105, height: 135 }}
                 source={{ uri: image }}></Image>
+        
+        <View style={{
+              flex: 1,
+              flexDirection: 'row',
+              alignItems: 'stretch'}} >
         <Text>Titel: {title}</Text>
         <Text>Genre: {genre}</Text>
         <Text>Anbefalet alder: {aldersgruppe} </Text>
         <Text>Antal spillere: {antal}</Text>
-      
+        </View>
         
         <Button
   icon={

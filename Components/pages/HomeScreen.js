@@ -11,7 +11,7 @@ export default class HomeScreen extends React.Component {
       isLoading: true,
       query: "",
       data: [],
-      fullData: []
+      text: ""
     };
     //Android viser en warning med en timer. Dette får RN til at ignorere fejlen. Der kan læses mere om fejlen her
     // https://github.com/firebase/firebase-js-sdk/issues/97
@@ -44,27 +44,33 @@ export default class HomeScreen extends React.Component {
       });
   }
 
-  searchFunction = ({ title, genre }, query) => {
-    if (title.includes(query) || genre.includes(query)) {
-      return true;
-    }
-    return false;
+
+  
+  handleClear = () => {
+
+    const forReals = this.state.data
+    
+
+    this.setState ({dataSource: forReals,
+                    text: ""})
+    
+
+
   };
 
   handleSearch = text => {
-    /*
-    const data = _.filter(this.State.data, boardGames => {
-      return this.searchFunction(boardGames);
-    });
-    this.setState ({ query: text, data});
-*/
+
     const result = this.state.dataSource.filter(item => {
       if (item.title.includes(text) || item.genre.includes(text)) {
         return item;
       }
-    });
 
-    console.log(result);
+    })
+
+    this.setState ({dataSource: result,
+                    text: text})
+
+
   };
 
   render() {
@@ -87,8 +93,9 @@ export default class HomeScreen extends React.Component {
       <View>
         <SearchBar
           lightTheme
+          value ={this.state.text}
           onChangeText={this.handleSearch}
-          /*onClear={someMethod}*/
+          onClear={this.handleClear}
           placeholder="Type Here..."
         />
         <FlatList

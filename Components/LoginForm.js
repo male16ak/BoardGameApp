@@ -35,7 +35,7 @@ export default class LoginForm extends Component {
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
       
-      
+      /** BAD PRACTICE, SKAL EVT ÆNDRES */
        global.brugernavn = this.state.email;; 
        
       

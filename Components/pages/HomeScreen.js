@@ -44,34 +44,27 @@ export default class HomeScreen extends React.Component {
       });
   }
 
-
-  
-  searchFunction = ({ title, genre}, query) => {
-    if (title.includes(query) || genre.includes(query))  {
-
+  searchFunction = ({ title, genre }, query) => {
+    if (title.includes(query) || genre.includes(query)) {
       return true;
     }
     return false;
   };
 
-
-  
   handleSearch = text => {
-   /*
+    /*
     const data = _.filter(this.State.data, boardGames => {
       return this.searchFunction(boardGames);
     });
     this.setState ({ query: text, data});
 */
     const result = this.state.dataSource.filter(item => {
-      if(item.title.includes (text) || item.genre.includes(text))  {
-        return item
+      if (item.title.includes(text) || item.genre.includes(text)) {
+        return item;
       }
-    })
+    });
 
-    console.log(result)
-
-
+    console.log(result);
   };
 
   render() {
@@ -122,7 +115,4 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
-
 }
-
-

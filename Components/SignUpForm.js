@@ -4,7 +4,8 @@ import {
   TextInput,
   StyleSheet,
   View,
-  ActivityIndicator
+  ActivityIndicator,
+  ImageBackground
 } from "react-native";
 import firebase from "firebase";
 import { Button } from "react-native-elements";
@@ -104,8 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white"
+    alignItems: "center"
   },
   buttonStyle: {
     backgroundColor: "rgba(92, 99,216, 1)",

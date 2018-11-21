@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, FlatList, View, Button, Image } from "react-native";
+import { ActivityIndicator, FlatList, View, Button, Image, ScrollView } from "react-native";
 import { ListItem, SearchBar } from "react-native-elements";
 import firebase from "firebase";
 import _ from "lodash";
@@ -100,14 +100,17 @@ export default class HomeScreen extends React.Component {
         />
         <FlatList
           data={this.state.dataSource}
+          /* refreshing={data.networkStatus === 4}
+          onRefresh={() => data.refetch()}
+          onEndReachedThreshold={0.5} */
+          style={{marginBottom: 48}}
           renderItem={({ item }) => (
             <ListItem
-              avatar={
-                <Image
-                  style={{ width: 65, height: 65 }}
-                  source={{ uri: item.image }}
-                />
-              }
+              leftAvatar={{
+                
+                  source: { uri: item.image }
+                
+              }}
               title={item.title}
               titleStyle={{ color: "tomato", fontWeight: "bold" }}
               subtitleStyle={{ color: "tomato" }}

@@ -34,11 +34,16 @@ export default class HomeScreen extends React.Component {
       .ref("BoardGames")
       .on("value", function(snapshot) {
         var boardGames = Object.values(snapshot.val());
+        const freeBoardGames = boardGames.filter( item =>{
+          if(item.lejer === 'tom' && 'Tom') {
+            return item;
+          }
+        })
 
         that.setState({
           isLoading: false,
-          dataSource: boardGames,
-          data: boardGames
+          dataSource: freeBoardGames,
+          data: freeBoardGames
         });
         return boardGames;
       });

@@ -38,6 +38,8 @@ export default class LoginForm extends Component {
 
   onLoginSuccess() {
     this.setState({ email: "", password: "", loading: false, error: "" });
+    global.test = this.state.email;
+
   }
 
   onLoginFail(err) {

@@ -10,14 +10,36 @@ export default class DetailsScreen extends React.Component {
   };
 
   lejSpil() {
+    {
+      firebase
+      .database()
+      .ref("BoardGames")
+      .on("value", function(snapshot) {
+        global.itemId --;
+        global.id = Object.keys(snapshot.val())[parseInt(global.itemId, 10)];
+        console.log(global.id);
+      })
+     }
+
     Alert.alert("Lej spil", "Er du sikker på du vil leje spillet?", [
       { text: "Nej tak", onPress: () => console.log("Nej tak trykket") },
-      { text: "Ja", onPress: () => console.log("Ja trykket"), style: "cancel" }
+      { text: "Ja", onPress: () =>
+      
+    firebase
+    .database()
+    .ref("BoardGames/" + global.id)
+    .update({
+      lejer: global.bruger
+    })   }
     ]);
   }
 
+  findKey() {
+
+  }
   render() {
     const { navigation } = this.props;
+    global.itemId = navigation.getParam("id","Intet id")
     const title = navigation.getParam("title", "No title");
     const genre = navigation.getParam("genre", "No genre defined");
     const aldersgruppe = navigation.getParam(

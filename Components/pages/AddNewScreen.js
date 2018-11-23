@@ -32,6 +32,8 @@ export default class AddNewScreen extends React.Component {
     const genre = this.state.genre;
     const antal = this.state.antal;
     const aldersgruppe = this.state.aldersgruppe;
+    const id = global.antalSpil.toString();
+    const ejer = global.bruger;
 
     if (title === "" || genre === "" || antal === "" || aldersgruppe === "") {
       Alert.alert("Fejl", "Du skal udfylde alle felter");
@@ -51,10 +53,19 @@ export default class AddNewScreen extends React.Component {
           title,
           genre,
           antal,
-          aldersgruppe
+          aldersgruppe,
+          id,
+          ejer
         })
         .then(data => {
           alert("Game created successfully");
+          this.setState({
+            title: "",
+            genre: "",
+            antal: "",
+            aldersgruppe: "",
+            error: ""
+          });
         })
         .catch(error => {
           //error callback

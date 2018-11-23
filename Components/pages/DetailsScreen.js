@@ -29,45 +29,38 @@ export default class DetailsScreen extends React.Component {
     const ejer = navigation.getParam("ejer", "Ingen specificerede ejer");
 
     return (
-      <View>
-        <Card title={title}>
+      <View style={{ backgroundColor: "grey", flex: 1 }}>
+        <Card title={title} titleStyle={{ fontSize: 30 }} style={{ flex: 2 }}>
           <Image
-            style={{ width: 310, height: 300, marginBottom: 15 }}
+            style={{
+              width: 310,
+              height: 270,
+              marginBottom: 15
+            }}
             source={{ uri: image }}
           />
-          <Text style={{ marginBottom: 10 }}> Genre: {genre}</Text>
-          <Text style={{ marginBottom: 10 }}>
-            {" "}
-            Anbefalet alder: {aldersgruppe}{" "}
-          </Text>
-          <Text style={{ marginBottom: 10 }}> Antal spillere: {antal}</Text>
-          <Text style={{ marginBottom: 10 }}> Ejer: {ejer}</Text>
-
+          <View style={{ alignItems: "center" }}>
+            <Text style={{ marginBottom: 10 }}> Genre: {genre}</Text>
+            <Text style={{ marginBottom: 10 }}>
+              {" "}
+              Anbefalet alder: {aldersgruppe}{" "}
+            </Text>
+            <Text style={{ marginBottom: 10 }}> Antal spillere: {antal}</Text>
+            <Text style={{ marginBottom: 10 }}> Ejer: {ejer}</Text>
+          </View>
           <Button
-            icon={{ name: "code" }}
+            title="Lej Spil"
+            icon={{ name: "check" }}
             backgroundColor="#03A9F4"
             buttonStyle={{
-              borderRadius: 0,
+              borderRadius: 30,
               marginLeft: 0,
               marginRight: 0,
               marginBottom: 0
             }}
-            title="Lej Spil"
+            onPress={this.lejSpil}
           />
         </Card>
-        <Image style={{ width: 105, height: 135 }} source={{ uri: image }} />
-
-        <Text>Titel: {title}</Text>
-        <Text>Genre: {genre}</Text>
-        <Text>Anbefalet alder: {aldersgruppe} </Text>
-        <Text>Antal spillere: {antal}</Text>
-        <Text>Ejer: {ejer}</Text>
-
-        <Button
-          icon={<Icon name="arrow-right" size={15} color="white" />}
-          title="lej spil"
-          onPress={this.lejSpil}
-        />
       </View>
     );
   }

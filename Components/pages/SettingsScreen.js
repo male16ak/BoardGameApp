@@ -11,7 +11,7 @@ export default class SettingsScreen extends React.Component {
       <View
         style={{ flex: 1, justifyContent: "center", alignItems: "stretch" }}
       >
-        <Text>Settings!</Text>
+        <Text style={{ textAlign: "center" }}>Settings!</Text>
         <Button
           title="Go to Home"
           onPress={() => this.props.navigation.navigate("Home")}

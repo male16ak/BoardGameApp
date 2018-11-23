@@ -28,12 +28,21 @@ export default class HomeScreen extends React.Component {
 
   getBoardGamesFromApiAsync() {
     var that = this;
+    global.antalSpil = 1;
 
     return firebase
       .database()
       .ref("BoardGames")
       .on("value", function(snapshot) {
+        global.id = Object.keys(snapshot.val())[0];
         var boardGames = Object.values(snapshot.val());
+        boardGames.forEach(item => {
+         global.antalSpil ++;
+        });
+
+        
+          
+        
         const freeBoardGames = boardGames.filter( item =>{
           if(item.lejer === 'tom' && 'Tom') {
             return item;
@@ -74,7 +83,6 @@ export default class HomeScreen extends React.Component {
 
     this.setState ({dataSource: result,
                     text: text})
-    console.log(global.bruger);
 
   };
 
@@ -123,7 +131,7 @@ export default class HomeScreen extends React.Component {
               subtitleStyle={{ color: "tomato" }}
               subtitle={item.genre}
               chevronColor="tomato"
-              onPress={() => this.props.navigation.navigate("Details", item)}
+              onPress={() => this.props.navigation.navigate("Details", item ) }
               containerStyle={{ backgroundColor: "white" }}
             />
           )}

@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, FlatList, View, Button, Image, ScrollView } from "react-native";
+import { ActivityIndicator, FlatList, View, Button, Image, backgroundColor} from "react-native";
 import { ListItem, SearchBar } from "react-native-elements";
 import firebase from "firebase";
 import _ from "lodash";
@@ -74,7 +74,7 @@ export default class HomeScreen extends React.Component {
 
     this.setState ({dataSource: result,
                     text: text})
-
+    console.log(global.bruger);
 
   };
 
@@ -95,7 +95,7 @@ export default class HomeScreen extends React.Component {
     }
 
     return (
-      <View>
+      <View style = {{flex: 1, backgroundColor: 'white'}}>
         <SearchBar
           lightTheme
           value ={this.state.text}
@@ -103,12 +103,14 @@ export default class HomeScreen extends React.Component {
           onClear={this.handleClear}
           placeholder="Type Here..."
         />
+        
         <FlatList
+        contentContainerStyle ={{justifyContent:'center',alignSelf:'stretch'}}
           data={this.state.dataSource}
           /* refreshing={data.networkStatus === 4}
           onRefresh={() => data.refetch()}
           onEndReachedThreshold={0.5} */
-          style={{marginBottom: 48}}
+          
           renderItem={({ item }) => (
             <ListItem
               leftAvatar={{
@@ -127,6 +129,7 @@ export default class HomeScreen extends React.Component {
           )}
           keyExtractor={(item, index) => index.toString()}
         />
+        
       </View>
     );
   }

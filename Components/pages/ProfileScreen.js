@@ -1,6 +1,8 @@
 import React from "react";
-import { ActivityIndicator, FlatList, View, Text, Image, backgroundColor} from "react-native";
+import { ActivityIndicator, FlatList, View, Text, Image, ImageBackground, StyleSheet} from "react-native";
 import { ListItem, SearchBar, Avatar, Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 import firebase from "firebase";
 
 
@@ -66,19 +68,20 @@ export default class HomeScreen extends React.Component {
             );
           }
           return (
-              <View style = {{flex: 1, backgroundColor: 'white'}}>
+            
+              <View style = {{flex: 1, backgroundColor:"white"}}>
                   <View style = {{alignItems: 'center', flexDirection:'row', marginLeft: 20, marginTop: 20}}>
                   <Avatar
                   title=/*{global.bruger[0]}*/ 'J'
                   rounded
                   size="large"
                   icon = {{name: 'user', type: 'font-awesome'}}
-                  onPress={() => console.log('Works')}
+                  onPress={() => this.props.navigation.navigate("Settings")}
                   activeOpacity={0.7}
 />
-                  <Text font= 'bold' style= {{ fontSize: 18}}> Jonathan_gauguin@hotmail.dk </Text>
+                  <Text font= 'bold' style= {{ fontSize: 16, fontWeight: "bold", color:"#03A9F4"}}> Jonathan_gauguin@hotmail.dk </Text>
                   </View>
-                  <View><Text>Mine spil: </Text></View>
+                  <View alignItems="center"><Text style={{fontSize: 20, fontWeight: "bold", marginBottom: 20}}>Mine spil: </Text></View>
                 
                 
                 <View style ={{flex: 1}}>
@@ -95,13 +98,17 @@ export default class HomeScreen extends React.Component {
                 
               }}
               title={item.title}
-              titleStyle={{ color: "tomato", fontWeight: "bold" }}
-              subtitleStyle={{ color: "tomato" }}
+              titleStyle={{ color: "black", fontWeight: "bold", textDecorationLine: "underline"
+            }}
+              subtitleStyle={{ color: "grey" }}
               subtitle={item.genre}
-              chevronColor="tomato"
-              onPress={() => this.props.navigation.navigate("Details", item ) }
+              chevron= {true}
+              bottomDivider={true}
+              topDivider={true}
+              chevronColor="black"
+              onPress={() => this.props.navigation.navigate("GameForRent", item ) }
               containerStyle={{ backgroundColor: "white" }}
-            />
+             />
             
                 
           )}
@@ -109,13 +116,16 @@ export default class HomeScreen extends React.Component {
         />
         </View>
         
-        <View style = {{alignItems: 'flex-end'}}>
+        <View style = {{alignItems: "stretch"}}>
         <Button
             title="Udlej Spil"
+            titleStyle={{fontSize: 22}}
+            icon={<Icon name="plus-circle" color="white" size={25} ></Icon>}
             backgroundColor="#03A9F4"
             buttonStyle={{
+              height: 70,
               borderRadius: 30,
-              marginLeft: 0,
+              marginLeft: 10,
               marginRight: 10,
               marginBottom: 10
             }} onPress={()=> this.props.navigation.navigate("AddNew")}></Button>
@@ -123,3 +133,9 @@ export default class HomeScreen extends React.Component {
           );
       }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }});

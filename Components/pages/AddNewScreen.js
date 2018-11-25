@@ -8,6 +8,7 @@ import {
   Alert
 } from "react-native";
 import firebase from "firebase";
+import Icon from "react-native-vector-icons/FontAwesome";
 import { Button } from "react-native-elements";
 
 export default class AddNewScreen extends React.Component {
@@ -119,6 +120,7 @@ export default class AddNewScreen extends React.Component {
 
           <Text style={styles.errorTextStyle}>{this.state.error}</Text>
           <Button
+            icon={<Icon name="plus-circle" size={20} color= 'white'></Icon>}
             title="Add New Game"
             style={styles.buttonStyle}
             onPress={this.writeGame.bind(this)}

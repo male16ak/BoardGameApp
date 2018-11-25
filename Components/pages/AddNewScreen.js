@@ -8,7 +8,7 @@ import {
   Alert
 } from "react-native";
 import firebase from "firebase";
-import { Button, Header } from "react-native-elements";
+import { Button } from "react-native-elements";
 
 export default class AddNewScreen extends React.Component {
   constructor(props) {

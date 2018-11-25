@@ -35,14 +35,11 @@ export default class LoginForm extends Component {
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
 
-      global.bruger = this.state.email;
-
+    global.bruger = this.state.email;
   }
 
   onLoginSuccess() {
     this.setState({ email: "", password: "", loading: false, error: "" });
-
-
   }
 
   onLoginFail(err) {

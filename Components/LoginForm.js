@@ -10,6 +10,7 @@ import {
 import firebase from "firebase";
 import SignUpForm from "./SignUpForm";
 import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -78,6 +79,7 @@ export default class LoginForm extends Component {
               {this.renderButton()}
               <Button
                 title="Sign up"
+                icon={<Icon name="pencil" size={20} color="white" />}
                 style={styles.buttonStyle}
                 titleStyle={{ fontWeight: "700" }}
                 containerStyle={{ marginTop: 20, width: 300, height: 45 }}
@@ -98,6 +100,7 @@ export default class LoginForm extends Component {
               <Button
                 style={styles.buttonStyle}
                 title="Go Back"
+                icon={<Icon name="arrow-left" size={20} color="white" />}
                 onPress={() => this.setState({ hasLogin: true })}
                 titleStyle={{ fontWeight: "700" }}
                 containerStyle={{ marginTop: 20, width: 300, height: 45 }}
@@ -117,6 +120,7 @@ export default class LoginForm extends Component {
         style={styles.buttonStyle}
         title="Log in"
         onPress={this.signIn.bind(this)}
+        icon={<Icon name="unlock" size={20} color="white" />}
         titleStyle={{ fontWeight: "700" }}
         containerStyle={{ marginTop: 20, width: 300, height: 45 }}
       />
@@ -145,10 +149,10 @@ const styles = StyleSheet.create({
   },
 
   buttonStyle: {
-    backgroundColor: "rgba(92, 99,216, 1)",
+    backgroundColor: "#03A9F4",
     borderColor: "transparent",
     borderWidth: 0,
-    borderRadius: 5
+    borderRadius: 30
   },
   inputText: {
     margin: 5,

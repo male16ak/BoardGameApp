@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import firebase from "firebase";
 import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class SignUpForm extends Component {
   constructor(props) {
@@ -87,6 +88,7 @@ export default class SignUpForm extends Component {
     return (
       <Button
         title="Sign up"
+        icon={<Icon name="sign-in" size={20} color="white" />}
         onPress={this.onButtonPress.bind(this)}
         style={styles.buttonStyle}
         titleStyle={{ fontWeight: "700" }}

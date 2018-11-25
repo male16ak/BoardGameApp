@@ -115,9 +115,7 @@ export default class HomeScreen extends React.Component {
         <FlatList
         contentContainerStyle ={{justifyContent:'center',alignSelf:'stretch'}}
           data={this.state.dataSource}
-          /* refreshing={data.networkStatus === 4}
-          onRefresh={() => data.refetch()}
-          onEndReachedThreshold={0.5} */
+          
           
           renderItem={({ item }) => (
             <ListItem

@@ -7,6 +7,7 @@ import HomeScreen from "./HomeScreen";
 import SettingsScreen from "./SettingsScreen";
 import DetailsScreen from "./DetailsScreen";
 import AddNewScreen from "./AddNewScreen";
+import ProfileScreen from "./ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
 
 const HomeStack = createStackNavigator({
@@ -14,21 +15,21 @@ const HomeStack = createStackNavigator({
   Details: { screen: DetailsScreen }
 });
 
-const SettingsStack = createStackNavigator({
-  Settings: { screen: SettingsScreen },
-  Details: { screen: DetailsScreen }
+const ProfileStack = createStackNavigator({
+  Profile: { screen: ProfileScreen },
+  AddNew: { screen: AddNewScreen }
 });
 
-const AddNewStack = createStackNavigator({
-  AddNew: { screen: AddNewScreen },
+const SettingsStack = createStackNavigator({
+  Settings: { screen: SettingsScreen },
   Details: { screen: DetailsScreen }
 });
 
 export default createBottomTabNavigator(
   {
     Home: { screen: HomeStack },
-    AddNew: { screen: AddNewStack },
-    Settings: { screen: SettingsStack }
+    Settings: { screen: SettingsStack },
+    Profile: { screen: ProfileStack }
   },
 
   {
@@ -39,9 +40,9 @@ export default createBottomTabNavigator(
 
         if (routeName === "Home") {
           iconName = "md-information-circle";
-        } else if (routeName === "AddNew") {
-          iconName = "ios-add-circle";
         } else if (routeName === "Settings") {
+          iconName = "ios-add-circle";
+        } else if (routeName === "Profile") {
           iconName = "md-options";
         }
         return <Ionicons name={iconName} size={25} color={tintColor} />;

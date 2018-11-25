@@ -34,9 +34,7 @@ export default class DetailsScreen extends React.Component {
     ]);
   }
 
-  findKey() {
-
-  }
+  
   render() {
     const { navigation } = this.props;
     global.itemId = navigation.getParam("id","Intet id")

@@ -83,8 +83,8 @@ export default class DetailsScreen extends React.Component {
             <Button
               title="Lej Spil"
               icon={<Icon name="check" size={20} color="white" />}
-              backgroundColor="#03A9F4"
               buttonStyle={{
+                backgroundColor:"#03A9F4",
                 borderRadius: 30,
                 marginLeft: 0,
                 marginRight: 0,

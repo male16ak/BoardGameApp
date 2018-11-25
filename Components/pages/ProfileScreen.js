@@ -121,8 +121,8 @@ export default class HomeScreen extends React.Component {
             title="Udlej Spil"
             titleStyle={{fontSize: 22}}
             icon={<Icon name="plus-circle" color="white" size={25} ></Icon>}
-            backgroundColor="#03A9F4"
             buttonStyle={{
+              backgroundColor:"#03A9F4",
               height: 70,
               borderRadius: 30,
               marginLeft: 10,

@@ -22,8 +22,8 @@ export default class SettingsScreen extends React.Component {
             <Button
               title="Go to Home"
               icon={<Icon name="home" size={20} color="white" />}
-              backgroundColor="#03A9F4"
               buttonStyle={{
+                backgroundColor:"#03A9F4",
                 height: 50,
                 marginLeft: 10,
                 marginRight: 10,
@@ -37,8 +37,8 @@ export default class SettingsScreen extends React.Component {
             <Button
               title="Log Out"
               icon={<Icon name="sign-out" size={20} color="white" />}
-              backgroundColor="#03A9F4"
               buttonStyle={{
+                backgroundColor:"#03A9F4",
                 height: 50,
                 borderRadius: 30,
                 marginLeft: 10,

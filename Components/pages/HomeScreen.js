@@ -125,10 +125,14 @@ export default class HomeScreen extends React.Component {
                 
               }}
               title={item.title}
-              titleStyle={{ color: "tomato", fontWeight: "bold" }}
-              subtitleStyle={{ color: "tomato" }}
+              titleStyle={{ color: "black", fontWeight: "bold", textDecorationLine: "underline"
+            }}
+              subtitleStyle={{ color: "grey" }}
               subtitle={item.genre}
-              chevronColor="tomato"
+              chevron= {true}
+              bottomDivider={true}
+              topDivider={true}
+              chevronColor="black"
               onPress={() => this.props.navigation.navigate("Details", item ) }
               containerStyle={{ backgroundColor: "white" }}
             />

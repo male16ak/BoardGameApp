@@ -8,6 +8,7 @@ import SettingsScreen from "./SettingsScreen";
 import DetailsScreen from "./DetailsScreen";
 import AddNewScreen from "./AddNewScreen";
 import ProfileScreen from "./ProfileScreen";
+import GameForRentScreen from "./GameForRentScreen";
 import { Ionicons } from "@expo/vector-icons";
 
 const HomeStack = createStackNavigator({
@@ -17,7 +18,8 @@ const HomeStack = createStackNavigator({
 
 const ProfileStack = createStackNavigator({
   Profile: { screen: ProfileScreen },
-  AddNew: { screen: AddNewScreen }
+  AddNew: { screen: AddNewScreen },
+  GameForRent: {screen: GameForRentScreen}
 });
 
 const SettingsStack = createStackNavigator({

@@ -9,6 +9,7 @@ import DetailsScreen from "./DetailsScreen";
 import AddNewScreen from "./AddNewScreen";
 import ProfileScreen from "./ProfileScreen";
 import { Ionicons } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
@@ -39,17 +40,17 @@ export default createBottomTabNavigator(
         var iconName;
 
         if (routeName === "Home") {
-          iconName = "md-information-circle";
-        } else if (routeName === "Settings") {
-          iconName = "ios-add-circle";
+          iconName = "home";
         } else if (routeName === "Profile") {
-          iconName = "md-options";
+          iconName = "user";
+        } else if (routeName === "Settings") {
+          iconName = "cog";
         }
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
+        return <Icon name={iconName} size={25} color={tintColor} />;
       }
     }),
     tabBarOptions: {
-      activeTintColor: "tomato",
+      activeTintColor: "#03A9F4",
       inactiveTintColor: "gray"
     }
   }

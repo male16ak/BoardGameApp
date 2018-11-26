@@ -23,6 +23,7 @@ const ProfileStack = createStackNavigator({
   AddNew: { screen: AddNewScreen },
   GameForRent: {screen: GameForRentScreen},
   Notification: {screen: NotificationScreen}
+
 });
 
 const SettingsStack = createStackNavigator({
@@ -33,8 +34,8 @@ const SettingsStack = createStackNavigator({
 export default createBottomTabNavigator(
   {
     Home: { screen: HomeStack },
-    Settings: { screen: SettingsStack },
-    Profile: { screen: ProfileStack }
+    Profile: { screen: ProfileStack },
+    Settings: { screen: SettingsStack }
   },
 
   {

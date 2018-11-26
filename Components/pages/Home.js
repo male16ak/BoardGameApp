@@ -9,6 +9,7 @@ import DetailsScreen from "./DetailsScreen";
 import AddNewScreen from "./AddNewScreen";
 import ProfileScreen from "./ProfileScreen";
 import GameForRentScreen from "./GameForRentScreen";
+import NotificationScreen from "./NotificationScreen"
 import { Ionicons } from "@expo/vector-icons";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -20,7 +21,9 @@ const HomeStack = createStackNavigator({
 const ProfileStack = createStackNavigator({
   Profile: { screen: ProfileScreen },
   AddNew: { screen: AddNewScreen },
-  GameForRent: { screen: GameForRentScreen }
+  GameForRent: {screen: GameForRentScreen},
+  Notification: {screen: NotificationScreen}
+
 });
 
 const SettingsStack = createStackNavigator({

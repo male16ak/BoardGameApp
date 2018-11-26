@@ -118,17 +118,29 @@ export default class HomeScreen extends React.Component {
         
         <View style = {{alignItems: "stretch"}}>
         <Button
-            title="Udlej Spil"
+            title="Notifikationer"
             titleStyle={{fontSize: 22}}
-            icon={<Icon name="plus-circle" color="white" size={25} ></Icon>}
+            icon={<Icon name="bullhorn" color="white" size={25}></Icon>}
             buttonStyle={{
               backgroundColor:"#03A9F4",
-              height: 70,
               borderRadius: 30,
               marginLeft: 10,
               marginRight: 10,
               marginBottom: 10
-            }} onPress={()=> this.props.navigation.navigate("AddNew")}></Button>
+            }}
+            onPress={() => this.props.navigation.navigate("Notification")}></Button>
+        <Button
+            title="Udlej Spil"
+            titleStyle={{fontSize: 22}}
+            icon={<Icon name="plus-circle" color="white" size={25} ></Icon>}
+             buttonStyle={{
+              backgroundColor:"#03A9F4",
+              borderRadius: 30,
+              marginLeft: 10,
+              marginRight: 10,
+              marginBottom: 10
+            }} 
+            onPress={()=> this.props.navigation.navigate("AddNew")}></Button>
         </View> </View>
           );
       }

@@ -79,7 +79,7 @@ render() {
               }}
                 subtitleStyle={{ color: "grey" }}
                 subtitle={item.besked}
-                chevron= {true}
+                chevron= {false}
                 bottomDivider={true}
                 topDivider={true}
                 chevronColor="black"

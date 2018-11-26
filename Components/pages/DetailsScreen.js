@@ -16,6 +16,36 @@ export default class DetailsScreen extends React.Component {
     title: "Details"
   };
 
+  databaseUdlejning =() => {
+   this.lejSpil();
+   this.sendNotification();
+
+  }
+
+  sendNotification () {
+    const spil = this.props.navigation.getParam("title");
+    const afsender = global.bruger;
+    const modtager = this.props.navigation.getParam("ejer");
+    const type = "Udlejning"
+    const spilId = global.id
+    const besked = "Dit spil " + this.props.navigation.getParam("title") + " er blevet lejet af " + this.props.navigation.getParam("ejer");
+
+    firebase
+      .database()
+      .ref("Notifications/")
+      .push({
+        spil,
+        afsender,
+        modtager,
+        type,
+        spilId,
+        besked
+
+      })
+      .then(data => {
+        console.log("Notification created successfully");
+      })}
+
   lejSpil() {
     {
       firebase
@@ -28,20 +58,26 @@ export default class DetailsScreen extends React.Component {
         });
     }
 
+
+    
+
     Alert.alert("Lej spil", "Er du sikker på du vil leje spillet?", [
       { text: "Nej tak", onPress: () => console.log("Nej tak trykket") },
       {
         text: "Ja",
         onPress: () =>
-          firebase
-            .database()
-            .ref("BoardGames/" + global.id)
-            .update({
-              lejer: global.bruger
-            })
-      }
-    ]);
+
+        firebase
+        .database()
+        .ref("BoardGames/" + global.id)
+        .update({
+          lejer: global.bruger
+        })
+       },
+    ])
   }
+
+  
 
   render() {
     const { navigation } = this.props;
@@ -90,7 +126,7 @@ export default class DetailsScreen extends React.Component {
                 marginRight: 0,
                 marginBottom: 0
               }}
-              onPress={this.lejSpil}
+              onPress={this.databaseUdlejning}
             />
           </Card>
         </View>

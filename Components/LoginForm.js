@@ -25,6 +25,8 @@ export default class LoginForm extends Component {
     };
   }
 
+  // Metode til at authentikere med firebase med email og password.
+
   signIn() {
     const { email, password } = this.state;
 
@@ -46,6 +48,11 @@ export default class LoginForm extends Component {
   onLoginFail(err) {
     this.setState({ loading: false, error: err.message });
   }
+
+  /* 
+  Denne render metode benytter sig af en switch der viser Login hvis brugeren har et login, 
+  og Sign Up hvis ikke. Her er der vist text input felter hvor brugeren skal skrive deres email og password. 
+*/
 
   render() {
     switch (this.state.hasLogin) {

@@ -4,8 +4,7 @@ import {
   TextInput,
   StyleSheet,
   View,
-  ActivityIndicator,
-  ImageBackground
+  ActivityIndicator
 } from "react-native";
 import firebase from "firebase";
 import { Button } from "react-native-elements";
@@ -20,6 +19,8 @@ export default class SignUpForm extends Component {
       loading: false
     };
   }
+
+  // Metode til at oprette brugeren med firebase med email og password når brugeren trykker på sign-up.
 
   onButtonPress() {
     const { email, password } = this.state;
@@ -52,6 +53,8 @@ export default class SignUpForm extends Component {
       error: err.message
     });
   }
+
+  // Denne render metode viser 2 text input felter til brugeren, som kan skrive deres email og password.
 
   render() {
     return (

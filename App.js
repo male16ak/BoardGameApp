@@ -11,6 +11,9 @@ export default class App extends React.Component {
       loggedIn: null
     };
   }
+
+  // Denne metode opretter forbindelse til firebase når appen startes.
+
   componentWillMount() {
     firebase.initializeApp({
       apiKey: "AIzaSyCCOI0XSWfhlcRTpQj_Z-EJ91_EJLNBDJc",
@@ -29,6 +32,10 @@ export default class App extends React.Component {
       }
     });
   }
+
+  /* Denne render metode viser vores Home Screen til brugeren hvis de er logget ind, 
+    og vores LoginForm hvis brugeren ikke er logget ind. 
+*/
 
   render() {
     switch (this.state.loggedIn) {

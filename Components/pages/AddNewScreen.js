@@ -11,6 +11,7 @@ import firebase from "firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Button } from "react-native-elements";
 
+//Pagen hvor vi tilføjer nye spil.
 export default class AddNewScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +28,10 @@ export default class AddNewScreen extends React.Component {
   static navigationOptions = {
     title: "Add a Board Game"
   };
+
+  //Metoden der opretter den nye spil i databasen
+  //Bruger værdierne fra tekstboksene, gemmer dem som variable og bruger disse variable til oprettelse af
+  //boardGame objektet.
 
   writeGame() {
     
@@ -73,11 +78,10 @@ export default class AddNewScreen extends React.Component {
           });
         })
         .catch(error => {
-          //error callback
           console.log("error ", error);
         });
   }
-
+//REnder metode. Består af en baggrund og en masse textInputs, som bruges til oprettelsen af et spil.
   render() {
     return (
       <ImageBackground

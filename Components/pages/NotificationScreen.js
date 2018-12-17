@@ -4,6 +4,7 @@ import { ListItem, SearchBar } from "react-native-elements";
 import firebase from "firebase";
 import _ from "lodash";
 
+//Vores side hvor man kan se notifikationer. Kan tilgås fra ProfilScreen.
 export default class NotificationScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -17,11 +18,12 @@ export default class NotificationScreen extends React.Component {
       static navigationOptions = {
         title: "NotificationScreen"
       };
+      //Kører getNotificationsFromApiAsync metoden hvis tender metode bliver udført.
       componentDidMount() {
         this.getNotificationsFromApiAsync();
       }
 
-
+      //metoden der tjekker for nye notifikationer, og henter dem ned hvis der er nogen.
     getNotificationsFromApiAsync() {
         var that = this;
     
@@ -44,6 +46,8 @@ export default class NotificationScreen extends React.Component {
         })
          
  })}
+
+ //render metode. Bruger en simpel flatList til at liste og vise alle notifikationer.
 render() {
     if (this.state.isLoading) {
       return (

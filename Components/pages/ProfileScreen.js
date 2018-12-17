@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import firebase from "firebase";
 
-
+//View hvor vi kan se  ores egen profil, og spil vi udlejer.
 export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -19,11 +19,11 @@ export default class HomeScreen extends React.Component {
     static navigationOptions = {
         title: "ProfileScreen"
       };
-
+      //Kører getYourBoardGamesFromAPiAsync appen hvis render bliver udført.
       componentDidMount() {
         this.getYourBoardGamesFromApiAsync();
       }
-
+      //Metode der bruges til at hente alle de spil, der er udlejet af brugeren. (Hvor ejer=brugernavn)
       getYourBoardGamesFromApiAsync() {
           var that = this;
           return firebase
@@ -33,7 +33,7 @@ export default class HomeScreen extends React.Component {
               var yourBoardGames = Object.values(snapshot.val());
 
               const freeBoardGames = yourBoardGames.filter( item =>{
-                if(item.ejer === "Jonathan_gauguin@hotmail.dk") {
+                if(item.ejer === global.bruger) {
                   return item;
                 }
               })
@@ -50,7 +50,8 @@ export default class HomeScreen extends React.Component {
       }
 
 
-
+      //Render metode. Minder meget om vores homeScreen i UI. Mange af de samme elementer.
+      //Her er dog også nogen knapper, der bruges til at tilgå AddNewScreen og NotificationScreen.
       render () {
           console.log(this.state.data);
           if (this.state.isLoading) {
@@ -72,7 +73,7 @@ export default class HomeScreen extends React.Component {
               <View style = {{flex: 1, backgroundColor:"white"}}>
                   <View style = {{alignItems: 'center', flexDirection:'row', marginLeft: 20, marginTop: 20}}>
                   <Avatar
-                  title=/*{global.bruger[0]}*/ 'J'
+                  title={global.bruger[0]}
                   rounded
                   size="large"
                   icon = {{name: 'user', type: 'font-awesome'}}

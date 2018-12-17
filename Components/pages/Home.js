@@ -13,6 +13,7 @@ import NotificationScreen from "./NotificationScreen"
 import { Ionicons } from "@expo/vector-icons";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+/* Opretter i denne klasse tre stacks, som gør vi kan navigere frem og tilbage mellem flere views*/ 
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Details: { screen: DetailsScreen }
@@ -31,6 +32,8 @@ const SettingsStack = createStackNavigator({
   Details: { screen: DetailsScreen }
 });
 
+//Herefter laver vi en bottom navigator, som er den bar vi har i nbunden af appen hvor vi kan navigere rundt.
+//her tilfjer vi vores tre stacks.
 export default createBottomTabNavigator(
   {
     Home: { screen: HomeStack },

@@ -5,6 +5,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import firebase from "firebase";
 
+//Vores settingpage. Indeholder mest links til sociale medier.
+//Derudover er der en logud knap og en knap der ender dig til homeScreen
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: "Settings"

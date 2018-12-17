@@ -4,6 +4,7 @@ import { ListItem, SearchBar } from "react-native-elements";
 import firebase from "firebase";
 import _ from "lodash";
 
+//constructor med variable gemt state 
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -13,19 +14,21 @@ export default class HomeScreen extends React.Component {
       data: [],
       text: ""
     };
-    //Android viser en warning med en timer. Dette får RN til at ignorere fejlen. Der kan læses mere om fejlen her
-    // https://github.com/firebase/firebase-js-sdk/issues/97
+    
     console.ignoredYellowBox = ["Setting a timer"];
   }
 
+  //opretter navigationsOptions, så der kan navigeres til view'et fra de andre.
   static navigationOptions = {
     title: "Board Games"
   };
 
+  //Når vores render metode er kørt, køres componentDidMount som kalder getBoardGamesFromApiAsync metoden
   componentDidMount() {
     this.getBoardGamesFromApiAsync();
   }
 
+  //Metode vi bruger til at hente alle ledige brætspil ned, så de kan ses
   getBoardGamesFromApiAsync() {
     var that = this;
 
@@ -33,22 +36,25 @@ export default class HomeScreen extends React.Component {
       .database()
       .ref("BoardGames")
       .on("value", function(snapshot) {
+        //Her gemmes alle brætspil i vores DB som var boardGames
         var boardGames = Object.values(snapshot.val());
         global.antalSpil = 1;
 
+        //Vi løber herigennem hvor mange brætspil der er alt i alt i DB'en, denne variabel bruges andetsteds i programet
         boardGames.forEach(item => {
          global.antalSpil ++;
         });
 
         
           
-        
+        //tager vores list boardGames, frasorterer alle der ikke er "ledige" (hvor lejer ikke = tom)
         const freeBoardGames = boardGames.filter( item =>{
           if(item.lejer === 'tom') {
             return item;
           }
         })
 
+        //Gemmer listen med alle vores spil og alle vores ledige brætspil i state
         that.setState({
           isLoading: false,
           dataSource: freeBoardGames,
@@ -59,7 +65,7 @@ export default class HomeScreen extends React.Component {
   }
 
 
-  
+  //Metode der er tilknyttet clear knappen i vores søgebar. Bruges nå teksten skal cleares fra søgebaren
   handleClear = () => {
 
     const forReals = this.state.data
@@ -72,6 +78,8 @@ export default class HomeScreen extends React.Component {
 
   };
 
+  //Metode der bruges når der skrives i vores søgebar. 
+  //Tager det der bliver skadet, og tjekker om det matcher på navn eller kategori med nogen af spillene
   handleSearch = text => {
 
     const result = this.state.dataSource.filter(item => {
@@ -85,7 +93,7 @@ export default class HomeScreen extends React.Component {
                     text: text})
 
   };
-
+//Render metode, med vores UI. Bruger en flatlist til at vise brætspils elementer.
   render() {
     if (this.state.isLoading) {
       return (

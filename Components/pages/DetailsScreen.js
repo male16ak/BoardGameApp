@@ -11,10 +11,14 @@ import { Button, Card } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import firebase from "firebase";
 
+//View der vises når brugeren klikker på et spil han/hun vil leje
+
 export default class DetailsScreen extends React.Component {
   static navigationOptions = {
     title: "Details"
   };
+  //metoder der bruges når man vil leje et spil. Kalder først LejSpil, som lejer spillet i databasen
+  //derefter kaldes sendNotification som sender en notifikation til udlejren om spillet er lejet.
 
   databaseUdlejning =() => {
    this.lejSpil();
@@ -22,6 +26,7 @@ export default class DetailsScreen extends React.Component {
 
   }
 
+  //Metoden der sender en noti, når et spil bliver udlejet
   sendNotification () {
     const spil = this.props.navigation.getParam("title");
     const afsender = global.bruger;
@@ -45,6 +50,9 @@ export default class DetailsScreen extends React.Component {
       .then(data => {
         console.log("Notification created successfully");
       })}
+
+      //Metoden til spillejningen. MInder meget om vores sletspil i GamesForRent. Spillet bliver bare ikke slettet her
+      //men i steddet for bliver der ændret på lejer attributen i databssen.
 
   lejSpil() {
     {
@@ -78,7 +86,7 @@ export default class DetailsScreen extends React.Component {
   }
 
   
-
+//Vores render metode. Bruger ligesom GameForREntScreen card tag til at vise de spil brugeren kan leje.
   render() {
     const { navigation } = this.props;
     global.itemId = navigation.getParam("id", "Intet id");

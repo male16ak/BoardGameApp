@@ -9,6 +9,7 @@ export default class GameForRentScreen extends React.Component {
     title: "GameForRent"
   };
 
+  //Funktioner der sletter spil, du udbydder. Bruger ID til at slette
   sletSpil() {
     {
       firebase
@@ -17,10 +18,9 @@ export default class GameForRentScreen extends React.Component {
       .on("value", function(snapshot) {
         global.itemId --;
         global.id = Object.keys(snapshot.val())[parseInt(global.itemId, 10)];
-        console.log(global.id);
       })
      }
-
+//Alert boks hvor der kan trykkes neh eller ja. Hvis ja bookes spillet
     Alert.alert("Lej spil", "Er du sikker på du vil leje spillet?", [
       { text: "Nej tak", onPress: () => console.log("Nej tak trykket") },
       { text: "Ja", onPress: () =>
@@ -32,7 +32,7 @@ export default class GameForRentScreen extends React.Component {
     ]);
   }
 
-  
+  //render metode med vores ui. Starte med at bruge navigation.getParam, til at få nogen attributter fra HomeScreen
   render() {
     const { navigation } = this.props;
     global.itemId = navigation.getParam("id","Intet id")
@@ -46,6 +46,7 @@ export default class GameForRentScreen extends React.Component {
     const antal = navigation.getParam("antal", "Intet specificerede antal");
     const ejer = navigation.getParam("ejer", "Ingen specificerede ejer");
 
+    //Ui. Brugt Card tag til at vise vores spil.
     return (
       <View style={{ backgroundColor: "grey", flex: 1 }}>
         <Card title={title} titleStyle={{ fontSize: 30 }} style={{ flex: 2 }}>
